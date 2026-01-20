@@ -1,36 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://brn8xsge3j6qw"]
+[gd_scene load_steps=7 format=3 uid="uid://brn8xsge3j6qw"]
 
 [ext_resource type="Texture2D" uid="uid://b4sspoof8nkl2" path="res://icon.svg" id="1_v3uhd"]
-[ext_resource type="FontFile" uid="uid://qdgxfbirpkxq" path="res://2D Resources/fonts/PixelOperator8.ttf" id="2_ufxs0"]
+[ext_resource type="FontFile" uid="uid://qdgxfbirpkxq" path="res://assets/fonts/PixelOperator8.ttf" id="2_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://c10tlb0ov6wch" path="res://scenes/player.tscn" id="3_6we3w"]
+[ext_resource type="Script" uid="uid://bplgowb7ton24" path="res://scripts/player.gd" id="4_qmak7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6we3w"]
 font = ExtResource("2_ufxs0")
-font_size = 200
+font_size = 160
 outline_size = 200
 outline_color = Color(0, 0.16470589, 0.5529412, 1)
 shadow_size = 250
 shadow_color = Color(0, 0.7254902, 0.9098039, 1)
 shadow_offset = Vector2(35, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmak7"]
+size = Vector2(128, 128)
+
 [node name="Main Level" type="Node2D"]
 
-[node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(583, 570)
-scale = Vector2(8.9609375, 1)
-texture = ExtResource("1_v3uhd")
-
 [node name="Project Label" type="Label" parent="."]
-offset_left = -128.0
-offset_top = 257.0
-offset_right = 1262.0
-offset_bottom = 666.0
+offset_left = 11.0
+offset_top = 156.0
+offset_right = 1401.0
+offset_bottom = 565.0
 text = "ATLANTIS"
 label_settings = SubResource("LabelSettings_6we3w")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(548, 524)
-zoom = Vector2(4, 4)
+position = Vector2(581, 315)
 
 [node name="Player" parent="." instance=ExtResource("3_6we3w")]
-position = Vector2(546, 525)
+position = Vector2(433, 483)
+script = ExtResource("4_qmak7")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(581, 570)
+scale = Vector2(8.906086, 1)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+texture = ExtResource("1_v3uhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_qmak7")
