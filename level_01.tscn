@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bqlak70eshshl"]
+[gd_scene format=4 uid="uid://bqlak70eshshl"]
 
 [ext_resource type="Texture2D" uid="uid://cdav2u1pbe12t" path="res://assets/tilesets/tileset.png" id="1_dvup1"]
 [ext_resource type="PackedScene" uid="uid://c10tlb0ov6wch" path="res://scenes/player.tscn" id="2_3imfn"]
@@ -199,6 +199,21 @@ texture = ExtResource("1_dvup1")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_iafiv")
 
+[sub_resource type="Animation" id="Animation_kdijb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(667, 20)]
+}
+
 [sub_resource type="Animation" id="Animation_iafiv"]
 resource_name = "moving_platform"
 length = 5.0
@@ -216,50 +231,33 @@ tracks/0/keys = {
 "values": [Vector2(667, 20), Vector2(795, 20)]
 }
 
-[sub_resource type="Animation" id="Animation_kdijb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(667, 20)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qrmce"]
 _data = {
 &"RESET": SubResource("Animation_kdijb"),
 &"moving_platform": SubResource("Animation_iafiv")
 }
 
-[node name="Level 01" type="Node2D"]
+[node name="Level 01" type="Node2D" unique_id=1577770654]
 position = Vector2(36, -12)
 
-[node name="TileMaps" type="Node" parent="."]
+[node name="TileMaps" type="Node" parent="." unique_id=1209496668]
 
-[node name="Midground" type="TileMapLayer" parent="TileMaps"]
+[node name="Midground" type="TileMapLayer" parent="TileMaps" unique_id=1438548403]
 tile_map_data = PackedByteArray("AAACAAAAAAADAAEAAAADAAAAAAADAAEAAAAEAAAAAAADAAEAAAAFAAAAAAADAAEAAAAGAAAAAAADAAEAAAAHAAAAAAADAAEAAAAIAAAAAAADAAEAAAAJAAAAAAADAAEAAAAJAAEAAAADAAEAAAAKAAEAAAADAAEAAAALAAEAAAADAAEAAAAMAAEAAAADAAEAAAANAAEAAAADAAEAAAAOAAEAAAADAAEAAAAPAAEAAAADAAEAAAAQAAEAAAADAAEAAAARAAEAAAADAAEAAAARAAIAAAADAAEAAAAQAAIAAAADAAEAAAARAAMAAAADAAEAAAASAAMAAAADAAEAAAATAAMAAAADAAEAAAAUAAMAAAADAAEAAAAVAAMAAAADAAEAAAAWAAMAAAADAAEAAAAXAAMAAAADAAEAAAAYAAMAAAADAAEAAAAZAAMAAAADAAEAAAAaAAIAAAADAAEAAAAbAAIAAAADAAEAAAAbAAEAAAADAAEAAAAaAAEAAAADAAEAAAAcAAEAAAADAAEAAAAdAAEAAAADAAEAAAAeAAEAAAADAAEAAAAfAAEAAAADAAEAAAAgAAEAAAADAAEAAAAhAAAAAAADAAEAAAAiAAAAAAADAAEAAAAjAAAAAAADAAEAAAAkAAAAAAADAAEAAAAlAAAAAAADAAEAAAAmAAAAAAADAAEAAAAnAAAAAAADAAEAAAAoAAAAAAADAAEAAAABAAAAAAABAAEAAAAAAAAAAAABAAEAAAApAAAAAAABAAEAAAAqAAAAAAABAAEAAAA1AAAAAAADAAEAAAA2AAAAAAADAAEAAAA4AAAAAAADAAEAAAA3AAAAAAADAAEAAAA5AAAAAAADAAEAAAA6AAAAAAADAAEAAAA=")
 tile_set = SubResource("TileSet_kdijb")
 
-[node name="Player" parent="." instance=ExtResource("2_3imfn")]
+[node name="Player" parent="." unique_id=1478191276 instance=ExtResource("2_3imfn")]
 position = Vector2(-2, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1895849447]
 position = Vector2(-1, 1)
 zoom = Vector2(3, 3)
 limit_left = 32
 position_smoothing_enabled = true
 
-[node name="Platform" parent="." instance=ExtResource("3_3imfn")]
+[node name="Platform" parent="." unique_id=1695629451 instance=ExtResource("3_3imfn")]
 position = Vector2(667, 20)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
-libraries = {
-&"": SubResource("AnimationLibrary_qrmce")
-}
-autoplay = "moving_platform"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform" unique_id=624075746]
+libraries/ = SubResource("AnimationLibrary_qrmce")
+autoplay = &"moving_platform"
